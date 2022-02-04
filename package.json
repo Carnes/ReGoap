@@ -1,0 +1,20 @@
+{
+  "name": "com.luxkun.regoap",
+  "version": "1.0.0",
+  "displayName": "ReGoap",
+  "description": "Generic C# GOAP (Goal Oriented Action Planning) library with Unity3d examples and helpers classes.",
+  "documentationUrl": "",
+  "changelogUrl": "",
+  "licenseUrl": "https://github.com/luxkun/ReGoap/blob/master/LICENSE",
+  "keywords": [
+    "Guid",
+    "Dictionary",
+    "Serialize",
+    "Serialise"
+  ],
+  "author": {
+    "name": "luxkun",
+    "email": "luciano.ferraro@gmail.com",
+    "url": "https://github.com/luxkun"
+  }
+}
