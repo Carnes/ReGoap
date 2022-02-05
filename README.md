@@ -1,7 +1,7 @@
 # ReGoap
 C# GOAP (Goal Oriented Action Planning) library with examples and helpers classes.
 
-This library is a Unity specific fork of [the original](https://github.com/luxkun/ReGoap).
+This library is a Unity specific fork of [the original](https://github.com/luxkun/ReGoap) written by [Luciano Ferraro](https://github.com/luxkun).
 
 # Documentation
 
