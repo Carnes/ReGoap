@@ -1,11 +1,7 @@
 # ReGoap
-Generic C# GOAP (Goal Oriented Action Planning) library with Unity3d examples and helpers classes.
+C# GOAP (Goal Oriented Action Planning) library with examples and helpers classes.
 
 This library is a Unity specific fork of [the orignal](https://github.com/luxkun/ReGoap).
-
-To include in your project you can go to Unity Package Manager, click the plus, click git, and paste the https git url.  It should look something like this: https://github.com/Carnes/ReGoap.git
-
-![image](https://user-images.githubusercontent.com/1475235/152628809-45806cc7-bbe4-47b5-ae8c-fb1015839c18.png)
 
 # Documentation
 
@@ -26,13 +22,9 @@ Start by checking out the [Unity FSM example here](https://github.com/luxkun/ReG
 
 This example uses the ReGoap library in Unity with a simple FSM (Finite State Machine) to handle the macro behaviours (in most games three FSM states should suffice: idle, goto, animate).
 
-To use it create a new Unity project, open the shell, go to the Assets directory and clone the whole repository in there:
-```bash
-git clone https://github.com/luxkun/ReGoap.git
-```
-(in windows you can do the same with command line or any git client, also you can just click on "Clone or Download" and then "Download ZIP")
+To include in your project you can go to Unity Package Manager, click the plus, click git, and paste the https git url.  It should look something like this: https://github.com/Carnes/ReGoap.git
 
-Also you can just download the last release's unity package, which probably won't have latest changes, [here](https://github.com/luxkun/ReGoap/releases/) or on the [unity asset store](https://www.assetstore.unity3d.com/en/#!/content/77376).
+![image](https://user-images.githubusercontent.com/1475235/152628809-45806cc7-bbe4-47b5-ae8c-fb1015839c18.png)
 
 ---
 
