@@ -12,7 +12,7 @@ namespace ReGoap.Planner
         private readonly List<INode<T>> createdNodes;
         // Debug
         private bool debugPlan = false;
-        private PlanDebugger debugger;
+        // private PlanDebugger debugger;
 
         public AStar(int maxNodesToExpand = 1000)
         {
@@ -34,8 +34,8 @@ namespace ReGoap.Planner
         private void DebugPlan(INode<T> node, INode<T> parent)
         {
             if (!debugPlan) return;
-            if (debugger == null)
-                debugger = new PlanDebugger();
+            // if (debugger == null)
+            //     debugger = new PlanDebugger();
 
             string nodeStr = string.Format(@"{0} [label=<
 <table border='0' color='black' fontcolor='#F5F5F5'>
@@ -52,33 +52,33 @@ namespace ReGoap.Planner
                 node.Name, node.Preconditions != null ? node.Preconditions.ToString() : "",
                 node.Effects != null ? node.Effects.ToString() : "",
                 node.Goal != null ? node.Goal.ToString() : "");
-            debugger.AddNode(nodeStr);
+            // debugger.AddNode(nodeStr);
 
             if (parent != null)
             {
                 string connStr = string.Format("{0} -> {1}", parent.GetHashCode(), node.GetHashCode());
-                debugger.AddConn(connStr);
+                // debugger.AddConn(connStr);
             }
         }
 
         private void EndDebugPlan(INode<T> node)
         {
-            if (debugger != null)
-            {
-                while (node != null)
-                {
-                    //mark success path
-                    string nodeStr = string.Format("{0} [style=\"bold\" color=\"darkgreen\"]", node.GetHashCode());
-                    debugger.AddNode(nodeStr);
-                    node = node.GetParent();
-                }
-
-                var txt = debugger.TransformText();
-                System.IO.Directory.CreateDirectory("PlanDebugger");
-                System.IO.Directory.CreateDirectory("PlanDebugger/Raws");
-                System.IO.File.WriteAllText(string.Format("PlanDebugger/Raws/DebugPlan_{0}.dot", System.DateTime.Now.ToString("HHmmss_ffff")), txt);
-                debugger.Clear();
-            }
+            // if (debugger != null)
+            // {
+            //     while (node != null)
+            //     {
+            //         //mark success path
+            //         string nodeStr = string.Format("{0} [style=\"bold\" color=\"darkgreen\"]", node.GetHashCode());
+            //         debugger.AddNode(nodeStr);
+            //         node = node.GetParent();
+            //     }
+            //
+            //     var txt = debugger.TransformText();
+            //     System.IO.Directory.CreateDirectory("PlanDebugger");
+            //     System.IO.Directory.CreateDirectory("PlanDebugger/Raws");
+            //     System.IO.File.WriteAllText(string.Format("PlanDebugger/Raws/DebugPlan_{0}.dot", System.DateTime.Now.ToString("HHmmss_ffff")), txt);
+            //     debugger.Clear();
+            // }
         }
 
         public INode<T> Run(INode<T> start, T goal, int maxIterations = 100, bool earlyExit = true, bool clearNodes = true, bool debugPlan = false)

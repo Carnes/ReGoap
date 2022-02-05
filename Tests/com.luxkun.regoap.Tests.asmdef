@@ -1,0 +1,11 @@
+{
+  "name": "luxkun.regoap.Tests",
+  "references": [
+    "luxkun.regoap.Runtime"
+  ],
+  "optionalUnityReferences": [
+    "TestAssemblies"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": []
+}
