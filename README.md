@@ -1,7 +1,7 @@
 # ReGoap
 C# GOAP (Goal Oriented Action Planning) library with examples and helpers classes.
 
-This library is a Unity specific fork of [the orignal](https://github.com/luxkun/ReGoap).
+This library is a Unity specific fork of [the original](https://github.com/luxkun/ReGoap).
 
 # Documentation
 
@@ -34,9 +34,9 @@ To include in your project you can go to Unity Package Manager, click the plus, 
 
 Before explaining how to use this library in your game let me explain how does a Goap system work, starting with a quote of [Jeff Orkin](http://alumni.media.mit.edu/~jorkin/goap.html)
 ```
-Goal-Oriented Action Planning (aka GOAP, rhymes with soap) refers to a simplfied STRIPS-like planning architecture specifically designed for real-time control of autonomous character behavior in games.
+Goal-Oriented Action Planning (aka GOAP, rhymes with soap) refers to a simplified STRIPS-like planning architecture specifically designed for real-time control of autonomous character behavior in games.
 ```
-Basically all it does is find a plan (a list of actions) that will fulfill the choosen goal's objectives.
+Basically all it does is find a plan (a list of actions) that will fulfill the chosen goal's objectives.
 
 The main concept you need to understand are: [States](#state), [Action](#action), [Goal](#goal), [Memory](#memory) and [Sensors](#sensor)
 
@@ -128,7 +128,7 @@ public class MyGoapAction : ReGoapAction<string, object>
     }
     public override void Run(IReGoapAction<string, object> previous, IReGoapAction<string, object> next, ReGoapState<string, object> settings, ReGoapState<string, object> goalState, Action<IReGoapAction<string, object>> done, Action<IReGoapAction<string, object>> fail)
     {
-        base.Run(previous, next, goalState, done, fail);
+        base.Run(previous, next, settings, goalState, done, fail);
         // do your own game logic here
         // when done, in this function or outside this function, call the done or fail callback, automatically saved to doneCallback and failCallback by ReGoapAction
         doneCallback(this); // this will tell the ReGoapAgent that the action is succerfully done and go ahead in the action plan
@@ -204,7 +204,7 @@ But ReGoap has a very userful debugger for agents in Unity (https://github.com/l
 
 To use it just click on the Unity's menu **Window** and then **ReGoap Debugger**, an Unity Window will open, this is the agent debugger.
 
-Now if you click on any agent in your scene (while playing, works only on running agents) the window will automatically update letting you know the agent's "thoughts" (current world state, choosen goal and current plan, possibile goals, possible actions, what can be done and what not, try it!).
+Now if you click on any agent in your scene (while playing, works only on running agents) the window will automatically update letting you know the agent's "thoughts" (current world state, choosen goal and current plan, possible goals, possible actions, what can be done and what not, try it!).
 
 ---
 
