@@ -1,7 +1,13 @@
 # ReGoap
 Generic C# GOAP (Goal Oriented Action Planning) library with Unity3d examples and helpers classes.
 
-This library is very generic, if you don't include the Unity folder you can use it in any game engine.
+This library is a Unity specific fork of [the orignal](https://github.com/luxkun/ReGoap).
+
+To include in your project you can go to Unity Package Manager, click the plus, click git, and paste the https git url.  It should look something like this: https://github.com/Carnes/ReGoap.git
+
+![image](https://user-images.githubusercontent.com/1475235/152628809-45806cc7-bbe4-47b5-ae8c-fb1015839c18.png)
+
+# Documentation
 
 1. [Get Started, fast version](#get-started-fast-version)
 2. [Get Started, long version](#get-started-long-version)
