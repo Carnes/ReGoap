@@ -131,7 +131,7 @@ public class MyGoapAction : ReGoapAction<string, object>
         base.Run(previous, next, settings, goalState, done, fail);
         // do your own game logic here
         // when done, in this function or outside this function, call the done or fail callback, automatically saved to doneCallback and failCallback by ReGoapAction
-        doneCallback(this); // this will tell the ReGoapAgent that the action is succerfully done and go ahead in the action plan
+        doneCallback(this); // this will tell the ReGoapAgent that the action is successfully done and go ahead in the action plan
         // if the action has failed then run failCallback(this), the ReGoapAgent will automatically invalidate the whole plan and ask the ReGoapPlannerManager to create a new plan
     }
 }
