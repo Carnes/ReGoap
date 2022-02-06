@@ -96,6 +96,7 @@ git clone https://github.com/luxkun/ReGoap.git
 ```
 2. Create a GameObject for your Agent
 3. Add a ReGoapAgent component, choose a name (you must create your own class that inherit ReGoapAgent, or implements IReGoapAgent)
+    Recommended: To start with, use ReGoapAgentAdvanced instead of ReGoapAgent because it will automatically call CalculateNewGoal when there is no current action.
 4. Add a ReGoapMemory component, choose a name (you must create your own class that inherit ReGoapMemory, or implements IReGoapMemory)
 5. [optional | repeat as needed] Add your own sensor class that inherit ReGoapSensor or implements IReGoapSensor
 6. [repeat as needed] Add your own class that inherit ReGoapAction or implements IReGoapAction (choose wisely what preconditions and effects should this action have) and implement the action logic by overriding the Run function, this function will be called by the ReGoapAgent.
