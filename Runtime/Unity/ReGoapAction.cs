@@ -69,6 +69,11 @@ namespace ReGoap.Unity
         {
             return new List<ReGoapState<T, W>> { settings };
         }
+        
+        public ReGoapState<T, W> GetCurrentSettings()
+        {
+            return settings;
+        }        
 
         public virtual ReGoapState<T, W> GetPreconditions(GoapActionStackData<T, W> stackData)
         {
