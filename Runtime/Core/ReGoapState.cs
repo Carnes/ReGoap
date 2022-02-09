@@ -269,6 +269,12 @@ namespace ReGoap.Core
                 return values;
         }
 
+        public bool IsTrue(T key)
+        {
+            lock (values)
+                return values.TryGetValue(key, out var value) && Equals(value, true);
+        }
+
         public bool TryGetValue(T key, out W value) {
             return values.TryGetValue(key, out value);
         }
