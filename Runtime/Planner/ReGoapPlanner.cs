@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using ReGoap.Core;
 using ReGoap.Utilities;
 
@@ -89,6 +90,7 @@ namespace ReGoap.Planner
                     continue;
                 }
 
+                
                 var result = leaf.CalculatePath();
                 if (IsSubsetOfPlan(currentPlan, result))
                 {
@@ -129,14 +131,14 @@ namespace ReGoap.Planner
                 ReGoapLogger.LogWarning("[ReGoapPlanner] Error while calculating plan.");
             return currentGoal;
         }
-        
+
         private bool IsSubsetOfPlan(Queue<ReGoapActionState<T, W>> currentPlan, Queue<ReGoapActionState<T, W>> otherPlan)
         {
             if (currentPlan == null || otherPlan == null) return false;
             if (currentPlan.LastOrDefault() != otherPlan.LastOrDefault()) return false;
-            if (currentPlan.Count > otherPlan.Count) return false;  // FIXME - should be a sum of cost too
+            if (currentPlan.Count > otherPlan.Count) return false;  // should be a sum of cost too
             return true;
-        }        
+        }
 
         public IReGoapGoal<T, W> GetCurrentGoal()
         {

@@ -196,12 +196,15 @@ namespace ReGoap.Unity
             {
                 var previous = currentActionState;
                 currentActionState = plan.Dequeue();
-                IReGoapAction<T, W> next = null;
+                ReGoapActionState<T, W> next = null;
                 if (plan.Count > 0)
-                    next = plan.Peek().Action;
+                {
+                    next = plan.Peek();
+                }
+
                 if (previous != null)
                     previous.Action.Exit(currentActionState.Action);
-                currentActionState.Action.Run(previous != null ? previous.Action : null, next, currentActionState.Settings, currentGoal.GetGoalState(), WarnActionEnd, WarnActionFailure);
+                currentActionState.Action.Run(previous, next, currentActionState.Settings, currentGoal.GetGoalState(), WarnActionEnd, WarnActionFailure);
             }
         }
 

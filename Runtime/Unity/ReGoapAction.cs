@@ -69,11 +69,6 @@ namespace ReGoap.Unity
         {
             return new List<ReGoapState<T, W>> { settings };
         }
-        
-        public ReGoapState<T, W> GetCurrentSettings()
-        {
-            return settings;
-        }        
 
         public virtual ReGoapState<T, W> GetPreconditions(GoapActionStackData<T, W> stackData)
         {
@@ -95,7 +90,7 @@ namespace ReGoap.Unity
             return true;
         }
 
-        public virtual void Run(IReGoapAction<T, W> previous, IReGoapAction<T, W> next, ReGoapState<T, W> settings,
+        public virtual void Run(ReGoapActionState<T, W> previous, ReGoapActionState<T, W> next, ReGoapState<T, W> settings,
             ReGoapState<T, W> goalState, Action<IReGoapAction<T, W>> done, Action<IReGoapAction<T, W>> fail)
         {
             interruptWhenPossible = false;
@@ -104,8 +99,8 @@ namespace ReGoap.Unity
             failCallback = fail;
             this.settings = settings;
 
-            previousAction = previous;
-            nextAction = next;
+            previousAction = previous?.Action;
+            nextAction = next?.Action;
         }
 
         public virtual void PlanEnter(IReGoapAction<T, W> previousAction, IReGoapAction<T, W> nextAction, ReGoapState<T, W> settings, ReGoapState<T, W> goalState)

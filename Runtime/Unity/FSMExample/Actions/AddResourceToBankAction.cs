@@ -67,7 +67,7 @@ namespace ReGoap.Unity.FSMExample.Actions
             return preconditions;
         }
 
-        public override void Run(IReGoapAction<string, object> previous, IReGoapAction<string, object> next, ReGoapState<string, object> settings, ReGoapState<string, object> goalState, Action<IReGoapAction<string, object>> done, Action<IReGoapAction<string, object>> fail)
+        public override void Run(ReGoapActionState<string, object> previous, ReGoapActionState<string, object> next, ReGoapState<string, object> settings, ReGoapState<string, object> goalState, Action<IReGoapAction<string, object>> done, Action<IReGoapAction<string, object>> fail)
         {
             base.Run(previous, next, settings, goalState, done, fail);
             this.settings = settings;
