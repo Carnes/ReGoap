@@ -135,6 +135,7 @@ namespace ReGoap.Unity
                 {
                     foreach (var work in doneWorks)
                     {
+                        if(work.Agent as UnityEngine.Object == null) continue;
                         work.Callback(work.NewGoal);
                     }
                     doneWorks.Clear();
