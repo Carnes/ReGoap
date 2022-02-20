@@ -67,7 +67,7 @@ namespace ReGoap.Unity.FSMExample.Actions
             return effects;
         }
 
-        public override List<ReGoapState<string, object>> GetSettings(GoapActionStackData<string, object> stackData)
+        public override ReGoapState<string, object> GetSettings(GoapActionStackData<string, object> stackData)
         {
             var newNeededResourceName = GetNeededResourceFromGoal(stackData.goalState);
             settings.Clear();
@@ -105,11 +105,9 @@ namespace ReGoap.Unity.FSMExample.Actions
                 {
                     settings.Set("resourcePosition", best.position);
                     settings.Set("resource", best.resource);
-                    results.Add(settings.Clone());
                 }
-                return results;
             }
-            return new List<ReGoapState<string, object>>();
+            return settings;
         }
 
         public override float GetCost(GoapActionStackData<string, object> stackData)

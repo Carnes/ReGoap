@@ -65,9 +65,9 @@ namespace ReGoap.Unity
             agent = stackData.agent;
         }
 
-        public virtual List<ReGoapState<T, W>> GetSettings(GoapActionStackData<T, W> stackData)
+        public virtual ReGoapState<T, W> GetSettings(GoapActionStackData<T, W> stackData)
         {
-            return new List<ReGoapState<T, W>> { settings };
+            return settings;
         }
 
         public virtual ReGoapState<T, W> GetPreconditions(GoapActionStackData<T, W> stackData)

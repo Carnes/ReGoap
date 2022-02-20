@@ -34,7 +34,9 @@ namespace ReGoap.Planner
             this.action = action;
             if (settings != null)
                 this.actionSettings = settings.Clone();
-
+            else
+                this.actionSettings = ReGoapState<T, W>.Instantiate();
+            
             if (parent != null)
             {
                 state = parent.GetState().Clone();
@@ -66,7 +68,8 @@ namespace ReGoap.Planner
 
                 // adding the action's effects to the current node's state
                 state.AddFromState(Effects);
-
+                // if state satisfies goal precondition then remove it
+                //Goal.ReplaceWithMissingDifference(state);
                 // removes from goal all the conditions that are now fullfiled in the action's effects
                 Goal.ReplaceWithMissingDifference(Effects);
                 // add all preconditions of the current action to the goal
@@ -161,21 +164,17 @@ namespace ReGoap.Planner
                 var possibleAction = actions[index];
 
                 possibleAction.Precalculations(stackData);
-                var settingsList = possibleAction.GetSettings(stackData);
-                foreach (var settings in settingsList)
-                {
-                    stackData.settings = settings;
-                    var precond = possibleAction.GetPreconditions(stackData);
-                    var effects = possibleAction.GetEffects(stackData);
+                stackData.settings = possibleAction.GetSettings(stackData);
+                var precond = possibleAction.GetPreconditions(stackData);
+                var effects = possibleAction.GetEffects(stackData);
 
-                    if (effects.HasAny(Goal) && // any effect is the current Goal
-                        !Goal.HasAnyConflict(effects, precond) && // no precondition is conflicting with the Goal or has conflict but the effects fulfils the Goal
-                        !Goal.HasAnyConflict(effects) && // no effect is conflicting with the Goal
-                        possibleAction.CheckProceduralCondition(stackData))
-                    {
-                        var newGoal = Goal;
-                        expandList.Add(Instantiate(planner, newGoal, this, possibleAction, settings));
-                    }
+                if (effects.HasAny(Goal) && // any effect is the current Goal
+                    !Goal.HasAnyConflict(effects, precond) && // no precondition is conflicting with the Goal or has conflict but the effects fulfils the Goal
+                    !Goal.HasAnyConflict(effects) && // no effect is conflicting with the Goal
+                    possibleAction.CheckProceduralCondition(stackData))
+                {
+                    var newGoal = Goal;
+                    expandList.Add(Instantiate(planner, newGoal, this, possibleAction, stackData.settings));
                 }
             }
             return expandList;

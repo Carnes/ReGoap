@@ -15,7 +15,6 @@ namespace ReGoap.Unity.FSMExample.Actions
         public ScriptableObject RawRecipe;
         private IRecipe recipe;
         private ResourcesBag resourcesBag;
-        private List<ReGoapState<string, object>> settingsList;
 
         protected override void Awake()
         {
@@ -31,26 +30,23 @@ namespace ReGoap.Unity.FSMExample.Actions
                 preconditions.Set("hasResource" + pair.Key, true);
             }
             effects.Set("hasResource" + recipe.GetCraftedResource(), true);
-
-            settingsList = new List<ReGoapState<string, object>>();
         }
 
-        public override List<ReGoapState<string, object>> GetSettings(GoapActionStackData<string, object> stackData)
+        public override ReGoapState<string, object> GetSettings(GoapActionStackData<string, object> stackData)
         {
-            if (settingsList.Count == 0)
+            if (settings.Count == 0)
                 CalculateSettingsList(stackData);
-            return settingsList;
+            return settings;
         }
 
         private void CalculateSettingsList(GoapActionStackData<string, object> stackData)
         {
-            settingsList.Clear();
+            settings.Clear();
             // push all available workstations
             foreach (var workstationsPair in (Dictionary<Workstation, Vector3>)stackData.currentState.Get("workstations"))
             {
                 settings.Set("workstation", workstationsPair.Key);
                 settings.Set("workstationPosition", workstationsPair.Value);
-                settingsList.Add(settings.Clone());
             }
         }
 

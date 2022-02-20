@@ -56,7 +56,7 @@ namespace ReGoap.Unity.FSMExample.Actions
             return base.GetEffects(stackData);
         }
 
-        public override List<ReGoapState<string, object>> GetSettings(GoapActionStackData<string, object> stackData)
+        public override ReGoapState<string, object> GetSettings(GoapActionStackData<string, object> stackData)
         {
             if (stackData.goalState.TryGetValue("isAtPosition", out var isAtPosition))
             {
@@ -69,7 +69,7 @@ namespace ReGoap.Unity.FSMExample.Actions
                 settings.Set("reconcilePosition", true);
                 return base.GetSettings(stackData);
             }
-            return new List<ReGoapState<string, object>>();
+            return settings;
         }
 
         // if you want to calculate costs use a non-dynamic/generic goto action

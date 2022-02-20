@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Linq;
 using ReGoap.Core;
 using ReGoap.Unity.FSMExample.OtherScripts;
 
@@ -26,7 +26,7 @@ namespace ReGoap.Unity.FSMExample.Actions
             return base.CheckProceduralCondition(stackData) && stackData.settings.HasKey("bank");
         }
 
-        public override List<ReGoapState<string, object>> GetSettings(GoapActionStackData<string, object> stackData)
+        public override ReGoapState<string, object> GetSettings(GoapActionStackData<string, object> stackData)
         {
             foreach (var pair in stackData.goalState.GetValues())
             {
@@ -34,7 +34,7 @@ namespace ReGoap.Unity.FSMExample.Actions
                 {
                     var resourceName = pair.Key.Substring(17);
                     if (settingsPerResource.ContainsKey(resourceName))
-                        return settingsPerResource[resourceName];
+                        return settingsPerResource[resourceName].FirstOrDefault();
                     var results = new List<ReGoapState<string, object>>();
                     settings.Set("resourceName", resourceName);
                     // push all available banks
@@ -45,7 +45,7 @@ namespace ReGoap.Unity.FSMExample.Actions
                         results.Add(settings.Clone());
                     }
                     settingsPerResource[resourceName] = results;
-                    return results;
+                    return results.FirstOrDefault();
                 }
             }
             return base.GetSettings(stackData);

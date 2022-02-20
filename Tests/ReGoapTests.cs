@@ -329,7 +329,7 @@ namespace ReGoap.Unity.Editor.Test
             };
             getWeapon.CustomSettingsGetter = (GoapActionStackData<string, object> stackData) =>
             {
-                var results = new List<ReGoapState<string, object>>();
+                ReGoapState<string, object> settings = ReGoapState<string, object>.Instantiate();
 
                 if (stackData.currentState.HasKey("weaponPositions") && stackData.currentState.HasKey("isAt"))
                 {
@@ -337,12 +337,10 @@ namespace ReGoap.Unity.Editor.Test
 
                     foreach (var objectPosition in (List<Vector2>)stackData.currentState.Get("weaponPositions"))
                     {
-                        ReGoapState<string, object> settings = ReGoapState<string, object>.Instantiate();
                         settings.Set("weaponPosition", objectPosition);
-                        results.Add(settings);
                     }
                 }
-                return results;
+                return settings;
             };
             #endregion
             #region getAmmo
@@ -368,20 +366,18 @@ namespace ReGoap.Unity.Editor.Test
             };
             getAmmo.CustomSettingsGetter = (GoapActionStackData<string, object> stackData) =>
             {
-                var results = new List<ReGoapState<string, object>>();
-
+                ReGoapState<string, object> settings = ReGoapState<string, object>.Instantiate();
+                
                 if (stackData.currentState.HasKey("ammoPositions") && stackData.currentState.HasKey("isAt"))
                 {
                     var currentPosition = (Vector2)stackData.currentState.Get("isAt");
 
                     foreach (var objectPosition in (List<Vector2>)stackData.currentState.Get("ammoPositions"))
                     {
-                        ReGoapState<string, object> settings = ReGoapState<string, object>.Instantiate();
                         settings.Set("ammoPosition", objectPosition);
-                        results.Add(settings);
                     }
                 }
-                return results;
+                return settings;
             };
             #endregion
             #region dynamicGoTo
@@ -435,7 +431,7 @@ namespace ReGoap.Unity.Editor.Test
                 }
                 newSettings.Set("isAt", wantedPosition);
                 newSettings.Set("inRange", inRange);
-                return new List<ReGoapState<string, object>> { newSettings };
+                return newSettings;
             };
             #endregion
             #region reconcileStartPosition
