@@ -57,7 +57,7 @@ namespace ReGoap.Planner
                 GoapActionStackData<T, W> stackData;
                 stackData.currentState = state;
                 stackData.goalState = Goal;
-                stackData.next = action;
+                stackData.next = nextAction;
                 stackData.agent = planner.GetCurrentAgent();
                 stackData.settings = actionSettings;
 
@@ -162,7 +162,7 @@ namespace ReGoap.Planner
             for (var index = actions.Count - 1; index >= 0; index--)
             {
                 var possibleAction = actions[index];
-
+                stackData.settings = actionSettings;
                 possibleAction.Precalculations(stackData);
                 stackData.settings = possibleAction.GetSettings(stackData);
                 var precond = possibleAction.GetPreconditions(stackData);
