@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using ReGoap.Core;
+using ReGoap.Unity;
 
 public class ReGoapNodeBaseEditor : EditorWindow
 {
@@ -112,10 +113,10 @@ public class ReGoapNodeBaseEditor : EditorWindow
     {
         if (Selection.activeGameObject != null)
         {
-            if (agentHelper == null || !agentLocked)
+            if ((UnityEngine.Object)agentHelper == null || !agentLocked)
             {
                 agentHelper = Selection.activeGameObject.GetComponent<IReGoapAgentHelper>();
-                if (agentHelper == null)
+                if ((UnityEngine.Object)agentHelper == null)
                     return;
             }
         }
@@ -147,13 +148,13 @@ public class ReGoapNodeBaseEditor : EditorWindow
         return node;
     }
 
-    private void UpdateGoapNodes<T, W>(IReGoapAgent<T, W> agent)
+    private void UpdateGoapNodes<T, W>(ReGoapAgent<T, W> agent)
     {
         if (nodes == null)
         {
             nodes = new List<ReGoapNodeEditor>();
         }
-        if (agentHelper == null || agent == null || !agent.IsActive() || agent.GetMemory() == null)
+        if ((UnityEngine.Object)agentHelper == null || agent == null || !agent.IsActive() || agent.GetMemory() == null)
             return;
 
         nodes.Clear();
@@ -289,7 +290,7 @@ public class ReGoapNodeBaseEditor : EditorWindow
     }
     private void UpdateMenuNodes()
     {
-        if (agentHelper == null)
+        if ((UnityEngine.Object)agentHelper == null)
             return;
 
         var lockNodePosition = new Vector2(0f, 0f);
