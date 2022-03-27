@@ -17,7 +17,7 @@ namespace ReGoap.Unity
         public bool WarnPossibleGoal = true;
 
         protected ReGoapState<T, W> goal;
-        protected Queue<ReGoapActionState<T, W>> plan;
+        protected ReGoapPlan<T,W> plan;
         protected IGoapPlanner<T, W> planner;
 
         #region UnityFunctions
@@ -52,7 +52,7 @@ namespace ReGoap.Unity
             return WarnPossibleGoal;
         }
 
-        public virtual Queue<ReGoapActionState<T, W>> GetPlan()
+        public virtual ReGoapPlan<T,W> GetPlan()
         {
             return plan;
         }
@@ -62,7 +62,7 @@ namespace ReGoap.Unity
             return goal;
         }
 
-        public virtual void SetPlan(Queue<ReGoapActionState<T, W>> path)
+        public virtual void SetPlan(ReGoapPlan<T,W> path)
         {
             plan = path;
         }

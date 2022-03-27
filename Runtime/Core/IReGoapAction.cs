@@ -20,7 +20,7 @@ namespace ReGoap.Core
         // most of actions would return a single item list, but more complex could return many items
         ReGoapState<T, W> GetSettings(GoapActionStackData<T, W> stackData);
         ReGoapState<T, W> GetCurrentSettings();
-        void Run(ReGoapActionState<T, W> previousAction, ReGoapActionState<T, W> nextAction, ReGoapState<T, W> settings, ReGoapState<T, W> goalState, Action<IReGoapAction<T, W>> done, Action<IReGoapAction<T, W>> fail);
+        void Run(ReGoapPlan<T, W> plan, ReGoapState<T, W> settings, ReGoapState<T, W> goalState, Action<IReGoapAction<T, W>> done, Action<IReGoapAction<T, W>> fail);
         // Called when the action has been added inside a running Plan
         void PlanEnter(IReGoapAction<T, W> previousAction, IReGoapAction<T, W> nextAction, ReGoapState<T, W> settings, ReGoapState<T, W> goalState);
         // Called when the plan, which had this action, has either failed or completed

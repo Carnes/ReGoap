@@ -185,14 +185,14 @@ namespace ReGoap.Planner
             return action;
         }
 
-        public Queue<ReGoapActionState<T, W>> CalculatePath()
+        public ReGoapPlan<T,W> CalculatePath()
         {
-            var result = new Queue<ReGoapActionState<T, W>>();
+            var result = new ReGoapPlan<T,W>();
             CalculatePath(ref result);
             return result;
         }
 
-        public void CalculatePath(ref Queue<ReGoapActionState<T, W>> result)
+        public void CalculatePath(ref ReGoapPlan<T,W> result)
         {
             var node = this;
             while (node.GetParent() != null)

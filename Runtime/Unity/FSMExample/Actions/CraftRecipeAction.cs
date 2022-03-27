@@ -62,9 +62,9 @@ namespace ReGoap.Unity.FSMExample.Actions
             return preconditions;
         }
 
-        public override void Run(ReGoapActionState<string, object> previous, ReGoapActionState<string, object> next, ReGoapState<string, object> settings, ReGoapState<string, object> goalState, Action<IReGoapAction<string, object>> done, Action<IReGoapAction<string, object>> fail)
+        public override void Run(ReGoapPlan<string, object> next, ReGoapState<string, object> settings, ReGoapState<string, object> goalState, Action<IReGoapAction<string, object>> done, Action<IReGoapAction<string, object>> fail)
         {
-            base.Run(previous, next, settings, goalState, done, fail);
+            base.Run(next, settings, goalState, done, fail);
             var workstation = settings.Get("workstation") as Workstation;
             if (workstation != null && workstation.CraftResource(resourcesBag, recipe))
             {

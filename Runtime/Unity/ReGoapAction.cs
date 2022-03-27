@@ -15,7 +15,6 @@ namespace ReGoap.Unity
 
         protected Action<IReGoapAction<T, W>> doneCallback;
         protected Action<IReGoapAction<T, W>> failCallback;
-        protected IReGoapAction<T, W> previousAction;
         protected IReGoapAction<T, W> nextAction;
 
         protected IReGoapAgent<T, W> agent;
@@ -95,7 +94,7 @@ namespace ReGoap.Unity
             return true;
         }
 
-        public virtual void Run(ReGoapActionState<T, W> previous, ReGoapActionState<T, W> next, ReGoapState<T, W> settings,
+        public virtual void Run(ReGoapPlan<T, W> plan, ReGoapState<T, W> settings,
             ReGoapState<T, W> goalState, Action<IReGoapAction<T, W>> done, Action<IReGoapAction<T, W>> fail)
         {
             interruptWhenPossible = false;
@@ -104,8 +103,7 @@ namespace ReGoap.Unity
             failCallback = fail;
             this.settings = settings;
 
-            previousAction = previous?.Action;
-            nextAction = next?.Action;
+            nextAction = plan.Next?.Action;
         }
 
         public virtual void PlanEnter(IReGoapAction<T, W> previousAction, IReGoapAction<T, W> nextAction, ReGoapState<T, W> settings, ReGoapState<T, W> goalState)

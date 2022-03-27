@@ -8,13 +8,13 @@ namespace ReGoap.Core
     {
         void Run(Action<IReGoapGoal<T, W>> callback);
         // THREAD SAFE METHODS (cannot use any unity library!)
-        Queue<ReGoapActionState<T, W>> GetPlan();
+        ReGoapPlan<T, W> GetPlan();
         string GetName();
         void Precalculations(IGoapPlanner<T, W> goapPlanner);
         bool IsGoalPossible();
         ReGoapState<T, W> GetGoalState();
         float GetPriority();
-        void SetPlan(Queue<ReGoapActionState<T, W>> path);
+        void SetPlan(ReGoapPlan<T,W> path);
         float GetErrorDelay();
     }
 }

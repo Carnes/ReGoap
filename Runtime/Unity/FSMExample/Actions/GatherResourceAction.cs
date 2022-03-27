@@ -127,9 +127,9 @@ namespace ReGoap.Unity.FSMExample.Actions
             return base.CheckProceduralCondition(stackData) && bag != null && stackData.settings.HasKey("resource");
         }
 
-        public override void Run(ReGoapActionState<string, object> previous, ReGoapActionState<string, object> next, ReGoapState<string, object> settings, ReGoapState<string, object> goalState, Action<IReGoapAction<string, object>> done, Action<IReGoapAction<string, object>> fail)
+        public override void Run(ReGoapPlan<string, object> next, ReGoapState<string, object> settings, ReGoapState<string, object> goalState, Action<IReGoapAction<string, object>> done, Action<IReGoapAction<string, object>> fail)
         {
-            base.Run(previous, next, settings, goalState, done, fail);
+            base.Run(next, settings, goalState, done, fail);
 
             var thisSettings = settings;
             resourcePosition = (Vector3)thisSettings.Get("resourcePosition");
